@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="icon" href="../../images/icon.png">
+    <title>إدارة الآراء - Dashboard</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- This content will be loaded into the main dashboard -->
+        <main class="dashboard-main">
+            <div id="testimonialsPage" class="dashboard-view">
+                <div class="container-fluid py-4">
+                    <!-- Page Header -->
+                    <div class="dashboard-header mb-4">
+                        <div>
+                            <h2 class="text-white mb-2">إدارة آراء العملاء</h2>
+                            <p class="text-secondary mb-0">إضافة وإدارة شهادات العملاء والفيديوهات</p>
+                        </div>
+                        <button class="btn btn-gold" onclick="showAddTestimonialModal()">
+                            <i class="fa-solid fa-plus me-2"></i> إضافة رأي جديد
+                        </button>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-comments"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="testimonialsCount">0</h3>
+                                    <p class="stat-label">إجمالي الآراء</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="avgRating">0</h3>
+                                    <p class="stat-label">متوسط التقييم</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="videosCount">0</h3>
+                                    <p class="stat-label">الفيديوهات</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-building"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="companiesCount">0</h3>
+                                    <p class="stat-label">الشركات</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="glass-card p-4">
+                                <h5 class="text-white mb-4">قائمة الآراء</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-dark table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>اسم العميل</th>
+                                                <th>الشركة</th>
+                                                <th>النوع</th>
+                                                <th>التقييم</th>
+                                                <th>الإجراءات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="testimonialsTable">
+                                            <!-- Testimonials will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Testimonial Modal -->
+    <div class="modal fade" id="testimonialModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark border border-gold">
+                <div class="modal-header border-gold">
+                    <h5 class="modal-title text-white" id="modalTitle">إضافة رأي جديد</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="testimonialForm">
+                        <div class="mb-3">
+                            <label class="form-label text-white">اسم العميل</label>
+                            <input type="text" class="form-control" id="clientName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">الشركة</label>
+                            <input type="text" class="form-control" id="company" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">نوع الماكينة</label>
+                            <select class="form-control" id="typeSelect" required>
+                                <option value="">اختر النوع</option>
+                                <option value="fiber">ليزر فايبر</option>
+                                <option value="co2">ليزر CO2</option>
+                                <option value="uv">ليزر UV</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">رابط الفيديو (YouTube ID)</label>
+                            <input type="text" class="form-control" id="videoId" placeholder="مثال: dQw4w9WgXcQ" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">النص</label>
+                            <textarea class="form-control" id="testimonialText" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">التقييم</label>
+                            <select class="form-control" id="rating" required>
+                                <option value="5">⭐⭐⭐⭐⭐ - 5 نجوم</option>
+                                <option value="4">⭐⭐⭐⭐ - 4 نجوم</option>
+                                <option value="3">⭐⭐⭐ - 3 نجوم</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-gold">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-gold" onclick="saveTestimonial()">حفظ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script>
+        // Load testimonials table
+        let testimonialsData = [];
+        let currentTestimonialId = null;
+        const testimonialModal = new bootstrap.Modal(document.getElementById('testimonialModal'));
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTestimonialsTable();
+            updateStats();
+        });
+
+        function loadTestimonialsTable() {
+            testimonialsData = JSON.parse(localStorage.getItem('testimonials')) || [];
+            const table = document.getElementById('testimonialsTable');
+            table.innerHTML = '';
+
+            if (testimonialsData.length === 0) {
+                table.innerHTML = '<tr><td colspan="5" class="text-center text-secondary">لا توجد آراء حتى الآن</td></tr>';
+                return;
+            }
+
+            testimonialsData.forEach(testimonial => {
+                const typeLabel = {
+                    'fiber': 'ليزر فايبر',
+                    'co2': 'ليزر CO2',
+                    'uv': 'ليزر UV'
+                }[testimonial.type] || testimonial.type;
+
+                const rating = '⭐'.repeat(testimonial.rating);
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="text-white">${testimonial.clientName}</td>
+                    <td class="text-secondary">${testimonial.company}</td>
+                    <td><span class="badge bg-gold">${typeLabel}</span></td>
+                    <td class="text-gold">${rating}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-gold me-2" onclick="editTestimonial(${testimonial.id})">
+                            <i class="fa-solid fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteTestimonial(${testimonial.id})">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                table.appendChild(row);
+            });
+        }
+
+        function updateStats() {
+            const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+            
+            document.getElementById('testimonialsCount').textContent = testimonials.length;
+            document.getElementById('videosCount').textContent = testimonials.length;
+            
+            const avgRating = testimonials.length > 0 
+                ? (testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length).toFixed(1)
+                : 0;
+            document.getElementById('avgRating').textContent = avgRating;
+
+            const companies = new Set(testimonials.map(t => t.company)).size;
+            document.getElementById('companiesCount').textContent = companies;
+        }
+
+        function showAddTestimonialModal() {
+            currentTestimonialId = null;
+            document.getElementById('testimonialForm').reset();
+            document.getElementById('modalTitle').textContent = 'إضافة رأي جديد';
+            testimonialModal.show();
+        }
+
+        function editTestimonial(id) {
+            const testimonial = testimonialsData.find(t => t.id === id);
+            if (!testimonial) return;
+
+            currentTestimonialId = id;
+            document.getElementById('clientName').value = testimonial.clientName;
+            document.getElementById('company').value = testimonial.company;
+            document.getElementById('typeSelect').value = testimonial.type;
+            document.getElementById('videoId').value = testimonial.videoId;
+            document.getElementById('testimonialText').value = testimonial.text;
+            document.getElementById('rating').value = testimonial.rating;
+            document.getElementById('modalTitle').textContent = 'تعديل الرأي';
+            testimonialModal.show();
+        }
+
+        function saveTestimonial() {
+            const clientName = document.getElementById('clientName').value;
+            const company = document.getElementById('company').value;
+            const type = document.getElementById('typeSelect').value;
+            const videoId = document.getElementById('videoId').value;
+            const text = document.getElementById('testimonialText').value;
+            const rating = parseInt(document.getElementById('rating').value);
+
+            if (!clientName || !company || !type || !videoId || !text) {
+                Swal.fire('خطأ', 'الرجاء ملء جميع الحقول', 'error');
+                return;
+            }
+
+            if (currentTestimonialId) {
+                const index = testimonialsData.findIndex(t => t.id === currentTestimonialId);
+                if (index !== -1) {
+                    testimonialsData[index] = {
+                        ...testimonialsData[index],
+                        clientName, company, type, videoId, text, rating
+                    };
+                }
+            } else {
+                const newTestimonial = {
+                    id: Date.now(),
+                    clientName, company, type, videoId, text, rating,
+                    avatar: '👤'
+                };
+                testimonialsData.push(newTestimonial);
+            }
+
+            localStorage.setItem('testimonials', JSON.stringify(testimonialsData));
+            testimonialModal.hide();
+            loadTestimonialsTable();
+            updateStats();
+
+            Swal.fire('تم', 'تم حفظ الرأي بنجاح', 'success');
+        }
+
+        function deleteTestimonial(id) {
+            Swal.fire({
+                title: 'تأكيد الحذف',
+                text: 'هل أنت متأكد من حذف هذا الرأي؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ec9c04',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'نعم، احذف',
+                cancelButtonText: 'إلغاء'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    testimonialsData = testimonialsData.filter(t => t.id !== id);
+                    localStorage.setItem('testimonials', JSON.stringify(testimonialsData));
+                    loadTestimonialsTable();
+                    updateStats();
+                    Swal.fire('تم', 'تم حذف الرأي بنجاح', 'success');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

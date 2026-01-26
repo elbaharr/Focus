@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="icon" href="../../images/icon.png">
+    <title>الإعدادات - Focus Laser</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../index.html">
+                <img src="../../images/logo.png" alt="فوكاس ليزر" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">لوحة التحكم</a></li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <a href="../auth/login.html" class="btn btn-outline-gold" onclick="logout()">تسجيل الخروج</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <h5 class="text-white mb-0">لوحة التحكم</h5>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>الإحصائيات</span>
+                </a>
+                <a href="../catalog/components/view/view.html" class="nav-item">
+                    <i class="fa-solid fa-box"></i>
+                    <span>إدارة المنتجات</span>
+                </a>
+                <a href="../academy/components/view/view.html" class="nav-item">
+                    <i class="fa-solid fa-video"></i>
+                    <span>إدارة الفيديوهات</span>
+                </a>
+                <a href="../contact-us/components/view/view.html" class="nav-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>الرسائل الواردة</span>
+                </a>
+                <a href="settings.html" class="nav-item active">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>الإعدادات</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="container-fluid py-4">
+                <h2 class="text-white mb-4">الإعدادات</h2>
+
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="glass-card p-4">
+                            <h5 class="text-white mb-4">إعدادات الحساب</h5>
+                            <form id="accountForm">
+                                <div class="mb-3">
+                                    <label class="form-label text-beige">البريد الإلكتروني</label>
+                                    <input type="email" class="form-control bg-transparent text-light border-secondary" 
+                                           value="" id="userEmail" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-beige">كلمة المرور الحالية</label>
+                                    <input type="password" class="form-control bg-transparent text-light border-secondary">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-beige">كلمة المرور الجديدة</label>
+                                    <input type="password" class="form-control bg-transparent text-light border-secondary">
+                                </div>
+                                <button type="submit" class="btn btn-gold">حفظ التغييرات</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="glass-card p-4">
+                            <h5 class="text-white mb-4">إعدادات الموقع</h5>
+                            <form id="siteForm">
+                                <div class="mb-3">
+                                    <label class="form-label text-beige">اسم الموقع</label>
+                                    <input type="text" class="form-control bg-transparent text-light border-secondary" 
+                                           value="Focus Laser">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-beige">البريد الإلكتروني للتواصل</label>
+                                    <input type="email" class="form-control bg-transparent text-light border-secondary" 
+                                           value="sales@focus-laser.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-beige">رقم الهاتف</label>
+                                    <input type="tel" class="form-control bg-transparent text-light border-secondary" 
+                                           value="+20 100 000 0000">
+                                </div>
+                                <button type="submit" class="btn btn-gold">حفظ التغييرات</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="glass-card p-4">
+                            <h5 class="text-white mb-4">إدارة البيانات</h5>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <button class="btn btn-outline-gold" onclick="exportData()">
+                                    <i class="fa-solid fa-download me-2"></i> تصدير البيانات
+                                </button>
+                                <button class="btn btn-outline-gold" onclick="importData()">
+                                    <i class="fa-solid fa-upload me-2"></i> استيراد البيانات
+                                </button>
+                                <button class="btn btn-outline-danger" onclick="clearAllData()">
+                                    <i class="fa-solid fa-trash me-2"></i> حذف جميع البيانات
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../main.js"></script>
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            
+            if (!isLoggedIn) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+            
+            const userEmail = localStorage.getItem('userEmail');
+            if (userEmail) {
+                document.getElementById('userEmail').value = userEmail;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            window.location.href = '../auth/login.html';
+        }
+
+        function exportData() {
+            const data = {
+                products: JSON.parse(localStorage.getItem('products')) || [],
+                videos: JSON.parse(localStorage.getItem('videos')) || [],
+                messages: JSON.parse(localStorage.getItem('messages')) || []
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'focus-laser-data-' + new Date().toISOString().split('T')[0] + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'application/json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        if (data.products) localStorage.setItem('products', JSON.stringify(data.products));
+                        if (data.videos) localStorage.setItem('videos', JSON.stringify(data.videos));
+                        if (data.messages) localStorage.setItem('messages', JSON.stringify(data.messages));
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم الاستيراد بنجاح!',
+                            text: 'تم استيراد البيانات بنجاح.',
+                            confirmButtonText: 'موافق',
+                            confirmButtonColor: '#ec9c04',
+                            timer: 2000,
+                            timerProgressBar: true
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    } catch (error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'خطأ في الاستيراد',
+                            text: 'حدث خطأ أثناء استيراد البيانات. تأكد من صحة الملف.',
+                            confirmButtonText: 'موافق',
+                            confirmButtonColor: '#dc3545'
+                        });
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+        function clearAllData() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'هل أنت متأكد؟',
+                text: 'هل أنت متأكد من حذف جميع البيانات؟ هذا الإجراء لا يمكن التراجع عنه!',
+                showCancelButton: true,
+                confirmButtonText: 'نعم، احذف الكل',
+                cancelButtonText: 'إلغاء',
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem('products');
+                    localStorage.removeItem('videos');
+                    localStorage.removeItem('messages');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم الحذف!',
+                        text: 'تم حذف جميع البيانات بنجاح.',
+                        confirmButtonText: 'موافق',
+                        confirmButtonColor: '#ec9c04',
+                        timer: 2000,
+                        timerProgressBar: true
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>

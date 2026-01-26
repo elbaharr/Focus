@@ -1,0 +1,27 @@
+.auth-section {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    padding-top: 100px !important;
+}
+
+.auth-card {
+    max-width: 100%;
+}
+
+.input-group-text {
+    border-right: none;
+}
+
+.form-control:focus {
+    background-color: var(--bg-secondary);
+    border-color: var(--accent-gold);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.2rem rgba(236, 156, 4, 0.25);
+}
+
+.form-control:focus + .input-group-text,
+.input-group:focus-within .input-group-text {
+    border-color: var(--accent-gold);
+}
+

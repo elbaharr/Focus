@@ -1,0 +1,30 @@
+.dashboard-section {
+    padding-top: 100px !important;
+}
+
+.table-dark {
+    background-color: transparent;
+}
+
+.table-dark thead th {
+    border-bottom: 2px solid var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.table-dark tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table-dark tbody tr:hover {
+    background-color: rgba(236, 156, 4, 0.1);
+}
+
+.modal-content {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header,
+.modal-footer {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="icon" href="../../images/icon.png">
+    <title>السوفتوير - Focus Laser | فوكاس ليزر</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <img src="../../images/logo.png" alt="فوكاس ليزر" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../about/page.html">عن الشركة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../catalog/page.html">الكتالوج</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../spare-parts/page.html">قطع الغيار</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="page.html">السوفتوير</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../academy/page.html">الأكاديمية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../testimonials/page.html">آراء العملاء</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../contact-us/page.html">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header py-5 mt-5">
+        <div class="container">
+            <div class="section-title text-center mb-4">
+                <h2>برامج <span class="text-gold">الليزر</span></h2>
+                <p>أحدث البرامج والتطبيقات لتشغيل وإدارة ماكينات الليزر</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section class="software-section py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Products Grid -->
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <p class="text-beige mb-0" id="products-count">عرض جميع البرامج</p>
+                        <select class="form-select bg-secondary-theme text-light border-secondary" style="max-width: 200px;" id="sort-select">
+                            <option value="default">ترتيب افتراضي</option>
+                            <option value="name">حسب الاسم</option>
+                            <option value="version">حسب الإصدار</option>
+                        </select>
+                    </div>
+
+                    <div class="row g-4" id="products-container">
+                        <!-- Products will be loaded here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pt-5 pb-4 mt-5 border-top border-secondary" style="background-color: var(--bg-darker);">
+        <div class="container">
+            <div class="row g-5">
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <img src="../../images/logo.png" alt="Focus Laser" style="height: 60px; filter: brightness(1.2);">
+                    </div>
+                    <p class="text-secondary mb-4" style="line-height: 1.8;">
+                        <strong class="text-white">Focus Laser</strong> - نحن الرواد في تطوير وتصنيع ماكينات الليزر والفايبر في مصر. نقدم حلولاً صناعية متكاملة بمعايير عالمية.
+                    </p>
+                    <div class="d-flex gap-3 social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100075716776511" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@focus.laser?_r=1&_t=ZS-92pLL48YCby" target="_blank" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@focuslaser.2017" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-4">روابط هامة</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-3"><a href="../../index.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> الرئيسية</a></li>
+                        <li class="mb-3"><a href="../about/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> عن الشركة</a></li>
+                        <li class="mb-3"><a href="../catalog/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> الكتالوج</a></li>
+                        <li class="mb-3"><a href="../academy/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> الأكاديمية</a></li>
+                        <li class="mb-3"><a href="../contact-us/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> تواصل معنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">الخدمات</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-3"><a href="../spare-parts/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-caret-left ms-2 text-secondary"></i> قطع الغيار</a></li>
+                        <li class="mb-3"><a href="../software/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-caret-left ms-2 text-secondary"></i> البرامج</a></li>
+                        <li class="mb-3"><a href="../academy/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-caret-left ms-2 text-secondary"></i> الأكاديمية</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">تواصل معنا</h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li class="mb-4 d-flex align-items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-secondary mt-1 fs-5"></i>
+                            <span>مدينة نصر، القاهرة، مصر</span>
+                        </li>
+                        <li class="mb-4 d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-phone text-secondary fs-5"></i>
+                            <a href="tel:01000124415" class="text-decoration-none text-secondary hover-gold" dir="ltr">01000124415</a>
+                        </li>
+                        <li class="mb-4 d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-envelope text-secondary fs-5"></i>
+                            <a href="mailto:focuslaser25@gmail.com" class="text-decoration-none text-secondary hover-gold">focuslaser25@gmail.com</a>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-clock text-secondary fs-5"></i>
+                            <span>السبت - الخميس: 9ص - 5م</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-top border-secondary pt-4 mt-5">
+                <div class="text-center mb-3">
+                    <p class="text-secondary mb-0 small">
+                        <strong class="text-gold">البرمجة: عبد الرحمن محمد</strong>
+                    </p>
+                </div>
+                <div class="text-center">
+                    <p class="text-secondary mb-0 small">
+                        جميع الحقوق محفوظة © 2026 <span class="text-white fw-bold">Focus Laser</span> | 
+                        <a href="https://elbahar.top/" target="_blank" class="text-secondary text-decoration-none ms-2">برمجة : عبد الرحمن محمد
+
+</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="../../main.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

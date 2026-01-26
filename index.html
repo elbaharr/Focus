@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="فوكاس ليزر | Focus Laser - الشركة الرائدة في تصنيع وتوريد ماكينات الليزر والفايبر في مصر والشرق الأوسط. صيانة، قطع غيار، وتدريب احترافي.">
+    <meta name="keywords" content="ماكينات ليزر, فايبر ليزر, قطع غيار ليزر, ماكينات cnc, فوكاس ليزر, Focus Laser, لحام ليزر">
+    <meta name="author" content="Focus Laser">
+    <meta property="og:title" content="Focus Laser | تكنولوجيا الليزر بمواصفات عالمية">
+    <meta property="og:image" content="images/logo.png">
+<link rel="icon" href="images/icon.png">
+
+    <title>فوكاس ليزر </title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="فوكاس ليزر" class="navbar-logo" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mb-2 mb-lg-0 me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">عن الشركة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/catalog/page.html">الكتالوج</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/spare-parts/page.html">قطع الغيار</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/software/page.html">السوفتوير</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/academy/page.html">الأكاديمية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/testimonials/page.html">آراء العملاء</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/contact-us/page.html">تواصل معنا</a></li>
+                </ul>
+                <div class="d-flex gap-2 align-items-center">
+                    <a href="pages/auth/login.html" class="btn btn-outline-gold btn-sm">
+                        <i class="fa-solid fa-sign-in-alt me-1"></i> دخول
+                    </a>
+                    <a href="pages/auth/register.html" class="btn btn-gold btn-sm">
+                        <i class="fa-solid fa-user-plus me-1"></i> تسجيل
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <header class="hero-slider" id="home">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/carousel-item/C0058T01.JPG" alt="ماكينة ليزر فوكاس" class="d-block w-100" style="height: 600px; object-fit: cover;">
+                    <div class="hero-caption">
+                        <h1 class="text-white display-4 fw-bold">تكنولوجيا الليزر <span class="text-gold">بمواصفات عالمية</span></h1>
+                        <p class="lead">نجمع بين قوة التصنيع المحلي وأحدث تكنولوجيا الفايبر والليزر لضمان أعلى إنتاجية.</p>
+                        <a href="pages/catalog/page.html" class="btn btn-gold btn-lg px-5">استكشف الماكينات</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/carousel-item/C0082T01.JPG" alt="ماكينة ليزر متقدمة" class="d-block w-100" style="height: 600px; object-fit: cover;">
+                    <div class="hero-caption">
+                        <h1 class="text-white display-4 fw-bold">شريكك في <span class="text-gold">النجاح الصناعي</span></h1>
+                        <p class="lead">دعم فني حقيقي، قطع غيار متوفرة، وتدريب احترافي لضمان استمرار عملك.</p>
+                        <a href="#contact" class="btn btn-outline-gold btn-lg px-5">احجز استشارة مجانية</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/carousel-item/C0162T01.JPG" alt="ماكينة قطع ليزر" class="d-block w-100" style="height: 600px; object-fit: cover;">
+                    <div class="hero-caption">
+                        <h1 class="text-white display-4 fw-bold">حلول متكاملة <span class="text-gold">للمصانع الكبرى</span></h1>
+                        <p class="lead">ماكينات مصممة خصيصاً للعمل الشاق في بيئة الإنتاج الصناعي مع ضمان شامل.</p>
+                        <a href="pages/catalog/page.html" class="btn btn-gold btn-lg px-5">تصفح الكتالوج</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/carousel-item/DSC03773.JPG" alt="مصنع فوكاس ليزر" class="d-block w-100" style="height: 600px; object-fit: cover;">
+                    <div class="hero-caption">
+                        <h1 class="text-white display-4 fw-bold">أكاديمية تدريب <span class="text-gold">احترافية</span></h1>
+                        <p class="lead">دروس فيديو شاملة، مشاريع عملية، ودعم فني مباشر لضمان إتقان فريقك للماكينات.</p>
+                        <a href="pages/academy/page.html" class="btn btn-outline-gold btn-lg px-5">دخول الأكاديمية</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/carousel-item/DSC03789.JPG" alt="ماكينة ليزر فوكاس" class="d-block w-100" style="height: 600px; object-fit: cover;">
+                    <div class="hero-caption">
+                        <h1 class="text-white display-4 fw-bold">قطع غيار أصلية <span class="text-gold">متوفرة دائماً</span></h1>
+                        <p class="lead">نضمن توفر قطع الغيار الأصلية مع فريق صيانة جاهز 24/7 لضمان عدم توقف خط الإنتاج.</p>
+                        <a href="#contact" class="btn btn-gold btn-lg px-5">تواصل معنا</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="section-title text-center mb-5">
+                <h2>من <span class="text-gold">نحن</span></h2>
+                <p class="lead">فوكاس ليزر ليست مجرد مورد لماكينات الليزر، بل شريك متخصص في تطوير وتحسين حلول الليزر والفايبر</p>
+            </div>
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <img src="images/logo.png" alt="فوكاس ليزر" class="img-fluid rounded-4 shadow-lg">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="text-white fw-bold mb-4 display-6">في فوكاس ليزر <span class="text-gold">بنقدم أكتر من ماكينة.</span></h3>
+                    <p class="text-beige lead mb-4">
+                        في فوكاس ليزر، كسرنا قاعدة الاستيراد التقليدي. نحن نقوم بتطوير وتعديل ماكينات الليزر والفايبر لتناسب بيئة العمل الشاقة في مصر والشرق الأوسط، مع توفير ضمان حقيقي وخدمة ما بعد بيع لا تتوقف.
+                    </p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <div class="feature-card-about">
+                                <div class="feature-icon-about">
+                                    <i class="fa-solid fa-shield-halved text-gold"></i>
+                                </div>
+                                <div class="feature-content-about">
+                                    <h6 class="text-white mb-1 fw-bold">ضمان شامل</h6>
+                                    <small class="text-secondary">شامل قطع الغيار الأساسية</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card-about">
+                                <div class="feature-icon-about">
+                                    <i class="fa-solid fa-screwdriver-wrench text-gold"></i>
+                                </div>
+                                <div class="feature-content-about">
+                                    <h6 class="text-white mb-1 fw-bold">صيانة فورية</h6>
+                                    <small class="text-secondary">فريق فني جاهز دائماً</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card-about">
+                                <div class="feature-icon-about">
+                                    <i class="fa-solid fa-gear text-gold"></i>
+                                </div>
+                                <div class="feature-content-about">
+                                    <h6 class="text-white mb-1 fw-bold">تطوير محلي</h6>
+                                    <small class="text-secondary">ماكينات مصممة للبيئة المحلية</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card-about">
+                                <div class="feature-icon-about">
+                                    <i class="fa-solid fa-headset text-gold"></i>
+                                </div>
+                                <div class="feature-content-about">
+                                    <h6 class="text-white mb-1 fw-bold">دعم 24/7</h6>
+                                    <small class="text-secondary">دعم فني متواصل</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="pages/about/page.html" class="btn btn-gold btn-lg px-4">تعرف علينا أكثر <i class="fa-solid fa-arrow-left ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5 bg-secondary-theme">
+        <div class="container">
+            <div class="section-title text-center mb-5">
+                <h2>أحدث <span class="text-gold">الماكينات</span></h2>
+                <p class="lead">حلول متكاملة تناسب جميع الاحتياجات من الورش الصغيرة وحتى المصانع الكبرى.</p>
+            </div>
+
+            <div class="row g-4" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="pages/catalog/page.html" class="btn btn-gold btn-lg px-5">عرض كل الماكينات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-dark">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number display-4 fw-bold text-gold">+500</span>
+                        <p class="text-beige mt-2">عميل يثق بنا</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number display-4 fw-bold text-gold">+10</span>
+                        <p class="text-beige mt-2">سنوات خبرة</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number display-4 fw-bold text-gold">24/7</span>
+                        <p class="text-beige mt-2">دعم فني</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number display-4 fw-bold text-gold">100%</span>
+                        <p class="text-beige mt-2">توفر قطع غيار</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="py-5">
+        <div class="container">
+            <div class="section-title text-center mb-5">
+                <h2>عملاءنا <span class="text-gold">الكرام</span></h2>
+                <p class="lead">نفتخر بثقة كبرى الشركات والمصانع في مصر والشرق الأوسط</p>
+            </div>
+            <div class="row g-4 justify-content-center align-items-center">
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="client-logo-box">
+                        <img src="images/partiner/488861328_1198999835569759_3428058804323685577_n.jpg" alt="عميل فوكاس ليزر" class="client-logo img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="client-logo-box">
+                        <img src="images/partiner/WhatsApp Image 2026-01-13 at 6.58.49 PM.jpeg" alt="عميل فوكاس ليزر" class="client-logo img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="client-logo-box">
+                        <img src="images/partiner/WhatsApp Image 2026-01-13 at 6.58.50 PM (1).jpeg" alt="عميل فوكاس ليزر" class="client-logo img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="client-logo-box">
+                        <img src="images/partiner/WhatsApp Image 2026-01-13 at 6.58.50 PM.jpeg" alt="عميل فوكاس ليزر" class="client-logo img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Videos Section -->
+    <section id="videos" class="py-5 bg-secondary-theme">
+        <div class="container">
+            <div class="section-title text-center mb-5">
+                <h2>شهادات  <span class="text-gold">العملاء</span></h2>
+                <p class="lead">شاهد تجارب عملائنا مع ماكينات Focus Laser</p>
+            </div>
+            <div class="row g-4" id="latestVideos">
+                <!-- Latest 3 videos will be loaded here -->
+            </div>
+            <div class="text-center mt-5">
+                <a href="pages/testimonials/page.html" class="btn btn-gold btn-lg px-5">
+                    <i class="fa-solid fa-play me-2"></i> شاهد جميع الفيديوهات
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-5 bg-secondary-theme">
+        <div class="container">
+            <div class="bg-gold rounded-4 p-5 text-center shadow-lg">
+                <h2 class="text-dark fw-bold display-5 mb-3">جاهز تبدأ مشروعك؟</h2>
+                <p class="text-dark fs-5 mb-4">فريق مهندسينا جاهز للرد على كل استفساراتك ومساعدتك في اختيار الماكينة الأنسب.</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="https://wa.me/+201000124415" class="btn btn-dark btn-lg px-4 fw-bold" target="_blank">
+                        <i class="fa-brands fa-whatsapp me-2"></i> تواصل واتساب
+                    </a>
+                    <a href="tel:+201000124415" class="btn btn-outline-dark btn-lg px-4 fw-bold">
+                        <i class="fa-solid fa-phone me-2"></i> اتصل الآن
+                    </a>
+                    <a href="pages/contact-us/page.html" class="btn btn-outline-dark btn-lg px-4 fw-bold">
+                        <i class="fa-solid fa-envelope me-2"></i> أرسل رسالة
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="pt-5 pb-4 mt-5 border-top border-secondary" style="background-color: var(--bg-darker);">
+        <div class="container">
+            <div class="row g-5">
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <img src="../../images/logo.png" alt="Focus Laser" style="height: 60px; filter: brightness(1.2);">
+                    </div>
+                    <p class="text-secondary mb-4" style="line-height: 1.8;">
+                        <strong class="text-white">Focus Laser</strong> - نحن الرواد في تطوير وتصنيع ماكينات الليزر والفايبر في مصر. نقدم حلولاً صناعية متكاملة بمعايير عالمية.
+                    </p>
+                    <div class="d-flex gap-3 social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100075716776511" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@focus.laser?_r=1&_t=ZS-92pLL48YCby" target="_blank" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@focuslaser.2017" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-4">روابط هامة</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-3"><a href="../../index.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> الرئيسية</a></li>
+                        <li class="mb-3"><a href="../about/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> عن الشركة</a></li>
+                        <li class="mb-3"><a href="../catalog/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> الكتالوج</a></li>
+                        <li class="mb-3"><a href="../academy/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> الأكاديمية</a></li>
+                        <li class="mb-3"><a href="../contact-us/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-angle-left ms-2 text-secondary small"></i> تواصل معنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">الخدمات</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-3"><a href="../spare-parts/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-caret-left ms-2 text-secondary"></i> قطع الغيار</a></li>
+                        <li class="mb-3"><a href="../software/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-caret-left ms-2 text-secondary"></i> البرامج</a></li>
+                        <li class="mb-3"><a href="../academy/page.html" class="text-decoration-none text-secondary transition"><i class="fa-solid fa-caret-left ms-2 text-secondary"></i> الأكاديمية</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">تواصل معنا</h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li class="mb-4 d-flex align-items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-secondary mt-1 fs-5"></i>
+                            <span>مدينة نصر، القاهرة، مصر</span>
+                        </li>
+                        <li class="mb-4 d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-phone text-secondary fs-5"></i>
+                            <a href="tel:01000124415" class="text-decoration-none text-secondary hover-gold" dir="ltr">01000124415</a>
+                        </li>
+                        <li class="mb-4 d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-envelope text-secondary fs-5"></i>
+                            <a href="mailto:focuslaser25@gmail.com" class="text-decoration-none text-secondary hover-gold">focuslaser25@gmail.com</a>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-clock text-secondary fs-5"></i>
+                            <span>السبت - الخميس: 9ص - 5م</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-top border-secondary pt-4 mt-5">
+                <div class="text-center mb-3">
+                    <p class="text-secondary mb-0 small">
+                        <strong class="text-gold">البرمجة: عبد الرحمن محمد</strong>
+                    </p>
+                </div>
+                <div class="text-center">
+                    <p class="text-secondary mb-0 small">
+                        جميع الحقوق محفوظة © 2026 <span class="text-white fw-bold">Focus Laser</span> | 
+                        <a href="https://elbahar.top/" target="_blank" class="text-secondary text-decoration-none ms-2">برمجة : عبد الرحمن محمد
+
+</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="main.js"></script>
+    <script>
+        // Load products from catalog on homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            const defaultProducts = [
+                {
+                    id: "fog-1610",
+                    name: "Focus FOG 1610",
+                    category: "co2",
+                    price: "اتصل للسعر",
+                    image: "images/logo.png",
+                    description: "ماكينة CO2 قوية للمصانع الكبرى. مساحة عمل كبيرة وقدرة قص عالية.",
+                    specs: {
+                        power: "150 وات",
+                        area: "160x100 سم"
+                    }
+                },
+                {
+                    id: "fiber-30w",
+                    name: "Fiber Marker 30W",
+                    category: "fiber",
+                    price: "اتصل للسعر",
+                    image: "images/logo.png",
+                    description: "الحل المثالي للحفر الدقيق على المعادن والذهب والإكسسوارات.",
+                    specs: {
+                        power: "30 وات",
+                        source: "Raycus"
+                    }
+                },
+                {
+                    id: "welding-1500",
+                    name: "ماكينة لحام ليزر",
+                    category: "welding",
+                    price: "اتصل للسعر",
+                    image: "images/logo.png",
+                    description: "تكنولوجيا اللحام الأحدث والأسرع. نتائج نظيفة بدون تشطيب.",
+                    specs: {
+                        power: "1500 وات"
+                    }
+                }
+            ];
+
+            // Load products from localStorage or use defaults
+            let products = [];
+            try {
+                const stored = localStorage.getItem('products');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        products = parsed;
+                    } else {
+                        products = defaultProducts;
+                        localStorage.setItem('products', JSON.stringify(defaultProducts));
+                    }
+                } else {
+                    products = defaultProducts;
+                    localStorage.setItem('products', JSON.stringify(defaultProducts));
+                }
+            } catch (e) {
+                console.error('Error loading products:', e);
+                products = defaultProducts;
+                localStorage.setItem('products', JSON.stringify(defaultProducts));
+            }
+
+            // Display products
+            const grid = document.getElementById('productsGrid');
+            if (grid && products.length > 0) {
+                grid.innerHTML = products.slice(0, 3).map(product => `
+                    <div class="col-md-4">
+                        <div class="card machine-card h-100">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height: 250px; object-fit: cover;">
+                            <div class="card-body p-4">
+                                <h5 class="card-title text-white fw-bold">${product.name}</h5>
+                                <p class="card-text text-beige small">${product.description}</p>
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <span class="text-gold fw-bold">${(product.specs && product.specs.power) ? product.specs.power : (product.price || 'السعر')}</span>
+                                    <a href="pages/product-details/page.html?id=${product.id}" class="btn btn-sm btn-outline-gold">التفاصيل</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } else if (grid) {
+                grid.innerHTML = '<div class="col-12 text-center py-5"><p class="text-secondary">جاري تحميل الماكينات...</p></div>';
+            }
+        });
+    </script>
+</body>
+</html>
+
+    

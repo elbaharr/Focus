@@ -1,0 +1,25 @@
+.dashboard-section {
+    padding-top: 100px !important;
+}
+
+.table-warning {
+    background-color: rgba(236, 156, 4, 0.1) !important;
+}
+
+.table-dark {
+    background-color: transparent;
+}
+
+.table-dark thead th {
+    border-bottom: 2px solid var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.table-dark tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table-dark tbody tr:hover {
+    background-color: rgba(236, 156, 4, 0.1);
+}
+

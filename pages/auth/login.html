@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>تسجيل الدخول - Focus Laser | فوكاس ليزر</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <img src="../../images/logo.png" alt="فوكاس ليزر" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../about/page.html">عن الشركة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../catalog/page.html">الكتالوج</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../academy/page.html">الأكاديمية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../contact-us/page.html">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="auth-section py-5 mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div class="auth-card glass-card p-5">
+                        <div class="text-center mb-4">
+                            <img src="../../images/logo.png" alt="Focus Laser" style="height: 60px; margin-bottom: 20px;">
+                            <h2 class="text-white mb-2">تسجيل الدخول</h2>
+                            <p class="text-secondary">مرحباً بك في لوحة التحكم</p>
+                        </div>
+
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label class="form-label text-beige">البريد الإلكتروني</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-secondary text-gold">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </span>
+                                    <input type="email" class="form-control bg-transparent text-light border-secondary" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-beige">كلمة المرور</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-secondary text-gold">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </span>
+                                    <input type="password" class="form-control bg-transparent text-light border-secondary" id="password" required>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
+                                        <i class="fa-solid fa-eye" id="toggleIcon"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember">
+                                    <label class="form-check-label text-beige" for="remember">
+                                        تذكرني
+                                    </label>
+                                </div>
+                                <a href="#" class="text-gold text-decoration-none small">نسيت كلمة المرور؟</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-gold w-100 mb-3">
+                                <i class="fa-solid fa-sign-in-alt me-2"></i> تسجيل الدخول
+                            </button>
+
+                            <div class="text-center">
+                                <p class="text-secondary mb-0">
+                                    ليس لديك حساب؟ 
+                                    <a href="register.html" class="text-gold text-decoration-none">سجل الآن</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-4 mt-5 border-top border-secondary" style="background-color: var(--bg-darker);">
+        <div class="container">
+            <div class="text-center">
+                <p class="text-secondary mb-3 small">
+                    تصميم: <strong class="text-gold">عبد الرحمن محمد</strong>
+                </p>
+                <p class="text-secondary mb-0 small">
+                    جميع الحقوق محفوظة © 2026 <span class="text-white fw-bold">Focus Laser</span> | 
+                    <a href="https://elbahar.top/" target="_blank" class="text-secondary text-decoration-none ms-2">الموقع الشخصي</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="../../main.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+

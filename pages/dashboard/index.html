@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="icon" href="../../images/icon.png">
+    <title>لوحة التحكم - Focus Laser</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Mobile Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <button class="sidebar-close" id="sidebarClose">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <img src="../../images/logo.png" alt="Focus Laser" style="height: 40px;">
+                    <div>
+                        <h6 class="text-white mb-0">Focus Laser</h6>
+                        <small class="text-secondary">لوحة التحكم</small>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="user-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="text-white small fw-bold" id="userName">الإدمن</div>
+                            <div class="text-secondary small" id="userEmail">admin@focus-laser.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item active" data-page="dashboard">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>لوحة التحكم</span>
+                </a>
+                <div class="nav-section-title">إدارة المحتوى</div>
+                <a href="#" class="nav-item" data-page="products" onclick="loadProductsPage(event)">
+                    <i class="fa-solid fa-box"></i>
+                    <span>المنتجات</span>
+                </a>
+                <a href="#" class="nav-item" data-page="videos" onclick="loadVideosPage(event)">
+                    <i class="fa-solid fa-video"></i>
+                    <span>الفيديوهات</span>
+                </a>
+                <a href="#" class="nav-item" data-page="spare-parts" onclick="loadSparepartsPage(event)">
+                    <i class="fa-solid fa-cog"></i>
+                    <span>قطع الغيار</span>
+                </a>
+                <a href="#" class="nav-item" data-page="software" onclick="loadSoftwarePage(event)">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>البرامج</span>
+                </a>
+                <a href="#" class="nav-item" data-page="messages" onclick="loadMessagesPage(event)">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>الرسائل</span>
+                    <span class="badge-notification" id="unreadBadge" style="display: none;">0</span>
+                </a>
+                <a href="#" class="nav-item" data-page="testimonials" onclick="loadTestimonialsPage(event)">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>آراء العملاء</span>
+                </a>
+                <div class="nav-section-title">الإعدادات</div>
+                <a href="#" class="nav-item" data-page="settings" onclick="loadSettingsPage(event)">
+                    <i class="fa-solid fa-cog"></i>
+                    <span>الإعدادات</span>
+                </a>
+                <a href="#" class="nav-item" data-page="users" onclick="loadUsersPage(event)">
+                    <i class="fa-solid fa-users"></i>
+                    <span>المستخدمون</span>
+                </a>
+                <div class="nav-section-title">أخرى</div>
+                <a href="../../index.html" class="nav-item" target="_blank">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>عرض الموقع</span>
+                </a>
+                <a href="#" class="nav-item" onclick="logout(event)">
+                    <i class="fa-solid fa-sign-out-alt"></i>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Dashboard View (shown by default) -->
+            <div id="dashboardView" class="dashboard-view">
+                <div class="container-fluid py-4">
+                    <!-- Page Header with Controls -->
+                    <div class="dashboard-header mb-4">
+                        <div>
+                            <h2 class="text-white mb-2">لوحة التحكم</h2>
+                            <p class="text-secondary mb-0">مرحباً بك في لوحة التحكم - إدارة شاملة للموقع</p>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <button class="btn btn-sm btn-outline-gold" onclick="exportToExcel()">
+                                <i class="fa-solid fa-download me-2"></i> تحميل Excel
+                            </button>
+                            <div class="text-secondary text-end">
+                                <div class="small">آخر تحديث</div>
+                                <div class="fw-bold" id="lastUpdate">--:--</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Stats -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="usersCount">0</h3>
+                                    <p class="stat-label">عدد المستخدمين</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="visitsCount">0</h3>
+                                    <p class="stat-label">عدد الزيارات</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="visitorsCount">0</h3>
+                                    <p class="stat-label">عدد الزوار</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="countriesCount">0</h3>
+                                    <p class="stat-label">الدول</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Stats Cards -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card" onclick="loadProductsPage(event)">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-box"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="productsCount">0</h3>
+                                    <p class="stat-label">المنتجات</p>
+                                    <a href="#" class="stat-link">
+                                        عرض الكل <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card" onclick="loadVideosPage(event)">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="videosCount">0</h3>
+                                    <p class="stat-label">الفيديوهات</p>
+                                    <a href="#" class="stat-link">
+                                        عرض الكل <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card" onclick="loadMessagesPage(event)">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="messagesCount">0</h3>
+                                    <p class="stat-label">الرسائل</p>
+                                    <a href="#" class="stat-link">
+                                        عرض الكل <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card stat-card-warning">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="unreadMessagesCount">0</h3>
+                                    <p class="stat-label">غير مقروءة</p>
+                                    <a href="#" class="stat-link" >
+                                        عرض الكل <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-12">
+                            <div class="glass-card p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="text-white mb-0">إجراءات سريعة</h5>
+                                    <span class="text-secondary small">كل شيء في مكان واحد</span>
+                                </div>
+                                <div class="row g-3">
+                                    <!-- Content Management -->
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a href="#" onclick="loadProductsPage(event)" class="quick-action-btn">
+                                            <div class="quick-action-icon">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                            <span>إضافة منتج</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a href="#" onclick="loadVideosPage(event)" class="quick-action-btn">
+                                            <div class="quick-action-icon">
+                                                <i class="fa-solid fa-video"></i>
+                                            </div>
+                                            <span>إضافة فيديو</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a href="#" onclick="loadSparepartsPage(event)" class="quick-action-btn">
+                                            <div class="quick-action-icon">
+                                                <i class="fa-solid fa-cog"></i>
+                                            </div>
+                                            <span>إضافة قطعة غيار</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a href="#" onclick="loadSoftwarePage(event)" class="quick-action-btn">
+                                            <div class="quick-action-icon">
+                                                <i class="fa-solid fa-laptop"></i>
+                                            </div>
+                                            <span>إضافة برنامج</span>
+                                        </a>
+                                    </div>
+                                    <!-- Management Section -->
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a href="#" onclick="loadMessagesPage(event)" class="quick-action-btn">
+                                            <div class="quick-action-icon">
+                                                <i class="fa-solid fa-envelope"></i>
+                                            </div>
+                                            <span>عرض الرسائل</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a href="#" onclick="loadUsersPage(event)" class="quick-action-btn">
+                                            <div class="quick-action-icon">
+                                                <i class="fa-solid fa-users"></i>
+                                            </div>
+                                            <span>إدارة المستخدمين</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a href="#" onclick="loadSettingsPage(event)" class="quick-action-btn">
+                                            <div class="quick-action-icon">
+                                                <i class="fa-solid fa-sliders"></i>
+                                            </div>
+                                            <span>الإعدادات</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a href="#" onclick="exportToExcel()" class="quick-action-btn">
+                                            <div class="quick-action-icon">
+                                                <i class="fa-solid fa-download"></i>
+                                            </div>
+                                            <span>تنزيل البيانات</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <div class="glass-card p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="text-white mb-0">آخر الرسائل</h5>
+                                    <a href="#" onclick="loadMessagesPage(event)" class="text-gold small text-decoration-none">
+                                        عرض الكل <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                </div>
+                                <div id="recentMessages">
+                                    <!-- Messages will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="glass-card p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="text-white mb-0">آخر المنتجات</h5>
+                                    <a href="#" onclick="loadProductsPage(event)" class="text-gold small text-decoration-none">
+                                        عرض الكل <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                </div>
+                                <div id="recentProducts">
+                                    <!-- Products will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Stats Row -->
+                    <div class="row g-4 mt-2">
+                        <div class="col-lg-6">
+                            <div class="glass-card p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="text-white mb-0">آخر الفيديوهات</h5>
+                                    <a href="#" onclick="loadVideosPage(event)" class="text-gold small text-decoration-none">
+                                        عرض الكل <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                </div>
+                                <div id="recentVideos">
+                                    <!-- Videos will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Page -->
+            <div id="productsPage" class="dashboard-view" style="display: none;">
+                <div class="container-fluid py-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2 class="text-white mb-0">إدارة المنتجات</h2>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-gold" onclick="downloadTemplate('products')">
+                                <i class="fa-solid fa-file-arrow-down me-2"></i> ملف مثال
+                            </button>
+                            <button class="btn btn-outline-gold" onclick="exportData('products')">
+                                <i class="fa-solid fa-download me-2"></i> تصدير Excel
+                            </button>
+                            <label class="btn btn-outline-gold mb-0">
+                                <i class="fa-solid fa-upload me-2"></i> استيراد Excel
+                                <input type="file" accept=".csv" class="d-none" onchange="handleImport('products', this.files[0])">
+                            </label>
+                            <button class="btn btn-gold" data-bs-toggle="modal" data-bs-target="#productModal" onclick="resetProductForm()">
+                                <i class="fa-solid fa-plus me-2"></i> إضافة منتج
+                            </button>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4">
+                            <div id="productGrid" class="product-grid-dashboard row g-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spare Parts Page -->
+            <div id="sparePartsPage" class="dashboard-view" style="display: none;">
+                <div class="container-fluid py-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2 class="text-white mb-0">إدارة قطع الغيار</h2>
+                            <p class="text-secondary mb-0">إدارة وتحديث قطع غيار ماكينات الليزر والفايبر</p>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-gold" onclick="downloadTemplate('spareParts')">
+                                <i class="fa-solid fa-file-arrow-down me-2"></i> ملف مثال
+                            </button>
+                            <button class="btn btn-outline-gold" onclick="exportData('spareParts')">
+                                <i class="fa-solid fa-download me-2"></i> تصدير Excel
+                            </button>
+                            <label class="btn btn-outline-gold mb-0">
+                                <i class="fa-solid fa-upload me-2"></i> استيراد Excel
+                                <input type="file" accept=".csv" class="d-none" onchange="handleImport('spareParts', this.files[0])">
+                            </label>
+                            <button class="btn btn-gold" data-bs-toggle="modal" data-bs-target="#sparePartModal" onclick="resetSparePartForm()">
+                                <i class="fa-solid fa-plus me-2"></i> إضافة قطعة غيار
+                            </button>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-secondary text-gold">
+                                        <i class="fa-solid fa-search"></i>
+                                    </span>
+                                    <input type="text" class="form-control bg-transparent text-light border-secondary" id="sparePartsSearch" placeholder="بحث في قطع الغيار...">
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                        <div id="sparePartsGrid" class="product-grid-dashboard row g-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Software Page -->
+            <div id="softwarePage" class="dashboard-view" style="display: none;">
+                <div class="container-fluid py-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2 class="text-white mb-0">إدارة البرامج</h2>
+                            <p class="text-secondary mb-0">إدارة برامج الماكينات والسوفتوير المتخصص</p>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-gold" onclick="downloadTemplate('software')">
+                                <i class="fa-solid fa-file-arrow-down me-2"></i> ملف مثال
+                            </button>
+                            <button class="btn btn-outline-gold" onclick="exportData('software')">
+                                <i class="fa-solid fa-download me-2"></i> تصدير Excel
+                            </button>
+                            <label class="btn btn-outline-gold mb-0">
+                                <i class="fa-solid fa-upload me-2"></i> استيراد Excel
+                                <input type="file" accept=".csv" class="d-none" onchange="handleImport('software', this.files[0])">
+                            </label>
+                            <button class="btn btn-gold" data-bs-toggle="modal" data-bs-target="#softwareModal" onclick="resetSoftwareForm()">
+                                <i class="fa-solid fa-plus me-2"></i> إضافة برنامج
+                            </button>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-secondary text-gold">
+                                        <i class="fa-solid fa-search"></i>
+                                    </span>
+                                    <input type="text" class="form-control bg-transparent text-light border-secondary" id="softwareSearch" placeholder="بحث في البرامج...">
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                        <div id="softwareGrid" class="product-grid-dashboard row g-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Videos Page -->
+            <div id="videosPage" class="dashboard-view" style="display: none;">
+                <div class="container-fluid py-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2 class="text-white mb-0">إدارة الفيديوهات</h2>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-gold" onclick="downloadTemplate('videos')">
+                                <i class="fa-solid fa-file-arrow-down me-2"></i> ملف مثال
+                            </button>
+                            <button class="btn btn-outline-gold" onclick="exportData('videos')">
+                                <i class="fa-solid fa-download me-2"></i> تصدير Excel
+                            </button>
+                            <label class="btn btn-outline-gold mb-0">
+                                <i class="fa-solid fa-upload me-2"></i> استيراد Excel
+                                <input type="file" accept=".csv" class="d-none" onchange="handleImport('videos', this.files[0])">
+                            </label>
+                            <button class="btn btn-gold" data-bs-toggle="modal" data-bs-target="#videoModal" onclick="resetVideoForm()">
+                                <i class="fa-solid fa-plus me-2"></i> إضافة فيديو
+                            </button>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4">
+                        <div id="videosTableBody" class="row">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Page -->
+            <div id="messagesPage" class="dashboard-view" style="display: none;">
+                <div class="container-fluid py-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-white mb-0">الرسائل الواردة</h2>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-gold" onclick="downloadTemplate('messages')">
+                                <i class="fa-solid fa-file-arrow-down me-2"></i> ملف مثال
+                            </button>
+                            <button class="btn btn-outline-gold" onclick="exportData('messages')">
+                                <i class="fa-solid fa-download me-2"></i> تصدير Excel
+                            </button>
+                            <label class="btn btn-outline-gold mb-0">
+                                <i class="fa-solid fa-upload me-2"></i> استيراد Excel
+                                <input type="file" accept=".csv" class="d-none" onchange="handleImport('messages', this.files[0])">
+                            </label>
+                            <button class="btn btn-outline-gold" id="markAllReadBtn">
+                                <i class="fa-solid fa-check me-2"></i> وضع علامة: مقروء الكل
+                            </button>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4">
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover mb-0" id="messagesTable">
+                                <thead>
+                                    <tr>
+                                        <th>الاسم</th>
+                                        <th>البريد الإلكتروني</th>
+                                        <th>الموضوع</th>
+                                        <th>التاريخ</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="messagesTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settingsPage" class="dashboard-view" style="display: none;">
+                <div class="container-fluid py-4">
+                    <h2 class="text-white mb-4">الإعدادات</h2>
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <div class="glass-card p-4">
+                                <h5 class="text-white mb-4">إعدادات الموقع</h5>
+                                <form id="settingsForm">
+                                    <div class="mb-3">
+                                        <label for="siteName" class="form-label text-white">اسم الموقع</label>
+                                        <input type="text" class="form-control" id="siteName" placeholder="Focus Laser">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="siteEmail" class="form-label text-white">بريد الموقع</label>
+                                        <input type="email" class="form-control" id="siteEmail" placeholder="info@focus-laser.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="sitePhone" class="form-label text-white">رقم الهاتف</label>
+                                        <input type="text" class="form-control" id="sitePhone" placeholder="+966xxx xxx xxx">
+                                    </div>
+                                    <button type="button" class="btn btn-gold" onclick="saveSettings()">
+                                        <i class="fa-solid fa-save me-2"></i> حفظ الإعدادات
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="glass-card p-4">
+                                <h5 class="text-white mb-4">معلومات النظام</h5>
+                                <div class="system-info">
+                                    <div class="info-item mb-3">
+                                        <small class="text-secondary">إصدار النظام</small>
+                                        <div class="text-gold">v2.0</div>
+                                    </div>
+                                    <div class="info-item mb-3">
+                                        <small class="text-secondary">آخر تحديث</small>
+                                        <div class="text-white" id="systemLastUpdate">--/--/----</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <small class="text-secondary">حالة النظام</small>
+                                        <div><span class="badge bg-success">نشط</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Page -->
+            <div id="usersPage" class="dashboard-view" style="display: none;">
+                <div class="container-fluid py-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-white mb-0">إدارة المستخدمين</h2>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-gold" onclick="downloadTemplate('users')">
+                                <i class="fa-solid fa-file-arrow-down me-2"></i> ملف مثال
+                            </button>
+                            <button class="btn btn-outline-gold" onclick="exportData('users')">
+                                <thead>
+                                    <tr>
+                                        <th>البريد الإلكتروني</th>
+                                        <th>الدور</th>
+                                        <th>تاريخ الإنشاء</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials Page -->
+            <div id="testimonialsPage" class="dashboard-view" style="display: none;">
+                <div class="container-fluid py-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2 class="text-white mb-0">إدارة آراء العملاء</h2>
+                            <p class="text-secondary mb-0">إضافة وإدارة شهادات العملاء والفيديوهات</p>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-gold" onclick="downloadTemplate('testimonials')">
+                                <i class="fa-solid fa-file-arrow-down me-2"></i> ملف مثال
+                            </button>
+                            <button class="btn btn-outline-gold" onclick="exportData('testimonials')">
+                                <i class="fa-solid fa-download me-2"></i> تصدير Excel
+                            </button>
+                            <label class="btn btn-outline-gold mb-0">
+                                <i class="fa-solid fa-upload me-2"></i> استيراد Excel
+                                <input type="file" accept=".csv" class="d-none" onchange="handleImport('testimonials', this.files[0])">
+                            </label>
+                            <button class="btn btn-gold" onclick="showAddTestimonialModal()">
+                                <i class="fa-solid fa-plus me-2"></i> إضافة رأي جديد
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-comments"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="testimonialsCount">0</h3>
+                                    <p class="stat-label">إجمالي الآراء</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="avgRating">0</h3>
+                                    <p class="stat-label">متوسط التقييم</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="videosCount">0</h3>
+                                    <p class="stat-label">الفيديوهات</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="stat-card glass-card">
+                                <div class="stat-icon">
+                                    <i class="fa-solid fa-building"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="companiesCount">0</h3>
+                                    <p class="stat-label">الشركات</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="glass-card p-4">
+                                <h5 class="text-white mb-4">قائمة الآراء</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-dark table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>اسم العميل</th>
+                                                <th>الشركة</th>
+                                                <th>النوع</th>
+                                                <th>التقييم</th>
+                                                <th>الإجراءات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="testimonialsTable">
+                                            <!-- Testimonials will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Testimonials Modal -->
+    <div class="modal fade" id="testimonialModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark border border-gold">
+                <div class="modal-header border-gold">
+                    <h5 class="modal-title text-white" id="modalTitle">إضافة رأي جديد</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="testimonialForm">
+                        <div class="mb-3">
+                            <label class="form-label text-white">اسم العميل</label>
+                            <input type="text" class="form-control" id="clientName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">الشركة</label>
+                            <input type="text" class="form-control" id="company" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">نوع الماكينة</label>
+                            <select class="form-control" id="typeSelect" required>
+                                <option value="">اختر النوع</option>
+                                <option value="fiber">ليزر فايبر</option>
+                                <option value="co2">ليزر CO2</option>
+                                <option value="uv">ليزر UV</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">رابط الفيديو (YouTube ID)</label>
+                            <input type="text" class="form-control" id="videoId" placeholder="مثال: dQw4w9WgXcQ" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">النص</label>
+                            <textarea class="form-control" id="testimonialText" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">التقييم</label>
+                            <select class="form-control" id="rating" required>
+                                <option value="5">⭐⭐⭐⭐⭐ - 5 نجوم</option>
+                                <option value="4">⭐⭐⭐⭐ - 4 نجوم</option>
+                                <option value="3">⭐⭐⭐ - 3 نجوم</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-gold">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-gold" onclick="saveTestimonialFromDashboard()">حفظ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa-solid fa-box"></i> إضافة/تعديل منتج</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm">
+                        <!-- Image Upload -->
+                        <div class="form-group-enhanced">
+                            <label class="form-label-enhanced"><i class="fa-solid fa-image"></i> صورة المنتج</label>
+                            <div class="image-upload-wrapper" onclick="document.getElementById('productImage').click()">
+                                <i class="fa-solid fa-cloud-upload-alt"></i>
+                                <p>اضغط هنا لاختيار صورة أو اسحب الملف</p>
+                                <input type="file" class="d-none" id="productImage" accept="image/*">
+                            </div>
+                            <div id="productImagePreview" class="image-preview mt-3"></div>
+                        </div>
+                        
+                        <!-- Name Row -->
+                        <div class="form-row">
+                            <div class="form-group-enhanced">
+                                <label for="productName" class="form-label-enhanced"><i class="fa-solid fa-tag"></i> اسم المنتج</label>
+                                <input type="text" class="form-control" id="productName" placeholder="مثال: Focus FOG 1610">
+                            </div>
+                        </div>
+                        
+                        <!-- Price -->
+                        <div class="form-group-enhanced">
+                            <label for="productPrice" class="form-label-enhanced"><i class="fa-solid fa-dollar-sign"></i> السعر</label>
+                            <input type="number" class="form-control" id="productPrice" placeholder="0.00">
+                            <small class="text-secondary mt-1 d-block">اتركه فارغاً إذا كان السعر "اتصل للسعر"</small>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="form-group-enhanced">
+                            <label for="productDescription" class="form-label-enhanced"><i class="fa-solid fa-align-left"></i> الوصف</label>
+                            <textarea class="form-control" id="productDescription" rows="4" placeholder="اكتب وصفاً تفصيلياً للمنتج..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-times me-2"></i> إلغاء
+                    </button>
+                    <button type="button" class="btn btn-gold" onclick="saveProduct()">
+                        <i class="fa-solid fa-save me-2"></i> حفظ المنتج
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal fade" id="videoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa-solid fa-video"></i> إضافة فيديو</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="videoForm">
+                        <div class="form-group-enhanced">
+                            <label class="form-label-enhanced"><i class="fa-solid fa-heading"></i> العنوان</label>
+                            <input type="text" class="form-control" id="videoTitle" placeholder="عنوان الفيديو" required>
+                        </div>
+                        <div class="form-group-enhanced">
+                            <label class="form-label-enhanced"><i class="fa-solid fa-list"></i> النوع</label>
+                            <select class="form-control" id="videoType" required>
+                                <option value="">اختر النوع...</option>
+                                <option value="tutorial">شروحات</option>
+                                <option value="testimonial">آراء عملاء</option>
+                                <option value="factory">من المصنع</option>
+                            </select>
+                        </div>
+                        <div class="form-group-enhanced">
+                            <label class="form-label-enhanced"><i class="fa-solid fa-link"></i> رابط الفيديو</label>
+                            <input type="url" class="form-control" id="videoUrl" placeholder="https://youtube.com/watch?v=..." required>
+                            <small class="text-secondary mt-1 d-block">ملاحظة: سيتم استخراج صورة الفيديو تلقائياً من الرابط</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-times me-2"></i> إلغاء
+                    </button>
+                    <button type="button" class="btn btn-gold" onclick="saveVideo()">
+                        <i class="fa-solid fa-save me-2"></i> حفظ الفيديو
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa-solid fa-user"></i> إضافة مستخدم</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="userForm">
+                        <div class="form-group-enhanced">
+                            <label class="form-label-enhanced"><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="userEmail" placeholder="user@example.com" required>
+                        </div>
+                        <div class="form-group-enhanced">
+                            <label class="form-label-enhanced"><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                            <input type="password" class="form-control" id="userPassword" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-group-enhanced">
+                            <label class="form-label-enhanced"><i class="fa-solid fa-user-tag"></i> الدور</label>
+                            <select class="form-control" id="userRole" required>
+                                <option value="">اختر الدور...</option>
+                                <option value="admin">مدير النظام</option>
+                                <option value="editor">محرر</option>
+                                <option value="viewer">عارض</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-times me-2"></i> إلغاء
+                    </button>
+                    <button type="button" class="btn btn-gold" onclick="saveUser()">
+                        <i class="fa-solid fa-save me-2"></i> حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal fade" id="messageModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa-solid fa-envelope"></i> تفاصيل الرسالة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="messageDetails"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-gold" onclick="deleteCurrentMessage()">
+                        <i class="fa-solid fa-trash me-2"></i> حذف
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-times me-2"></i> إغلاق
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Spare Parts Modal -->
+    <div class="modal fade" id="sparePartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark border border-gold">
+                <div class="modal-header border-gold">
+                    <h5 class="modal-title text-white" id="sparePartModalTitle">إضافة قطعة غيار جديدة</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="sparePartForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-white">اسم القطعة</label>
+                                    <input type="text" class="form-control" id="sparePartName" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-white">السعر</label>
+                                    <input type="number" class="form-control" id="sparePartPrice" placeholder="0.00">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-white">الكمية المتوفرة</label>
+                                    <input type="number" class="form-control" id="sparePartStock" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">الوصف</label>
+                            <textarea class="form-control" id="sparePartDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">الصورة</label>
+                            <input type="file" class="form-control" id="sparePartImage" accept="image/*">
+                            <div id="sparePartImagePreview" class="mt-2"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">الماكينات المتوافقة</label>
+                            <input type="text" class="form-control" id="sparePartCompatibility" placeholder="مثال: FOG 1610, FOG 1325, Fiber 30W">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-gold">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-gold" onclick="saveSparePart()">حفظ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Software Modal -->
+    <div class="modal fade" id="softwareModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark border border-gold">
+                <div class="modal-header border-gold">
+                    <h5 class="modal-title text-white" id="softwareModalTitle">إضافة برنامج جديد</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="softwareForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-white">اسم البرنامج</label>
+                                    <input type="text" class="form-control" id="softwareName" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-white">الإصدار</label>
+                                    <input type="text" class="form-control" id="softwareVersion" placeholder="مثال: v2.1.0">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label text-white">السعر</label>
+                                    <input type="number" class="form-control" id="softwarePrice" placeholder="0.00">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">الوصف</label>
+                            <textarea class="form-control" id="softwareDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">رابط التحميل</label>
+                            <input type="url" class="form-control" id="softwareDownloadLink" placeholder="https://example.com/download">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">الصورة</label>
+                            <input type="file" class="form-control" id="softwareImage" accept="image/*">
+                            <div id="softwareImagePreview" class="mt-2"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">الماكينات المتوافقة</label>
+                            <input type="text" class="form-control" id="softwareCompatibility" placeholder="مثال: جميع الماكينات, CO2 فقط, Fiber فقط">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">المميزات</label>
+                            <textarea class="form-control" id="softwareFeatures" rows="2" placeholder="ميزة 1، ميزة 2، ميزة 3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-gold">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-gold" onclick="saveSoftware()">حفظ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="../../main.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

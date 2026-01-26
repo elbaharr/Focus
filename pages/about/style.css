@@ -1,0 +1,11 @@
+.page-header {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-main) 100%);
+    padding-top: 100px !important;
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    height: auto;
+    border: 3px solid rgba(236, 156, 4, 0.2);
+}
+
